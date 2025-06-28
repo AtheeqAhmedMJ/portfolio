@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LightspeedTransition from './components/LightspeedTransition/LightspeedTransition';
-
 import LandingPage from './pages/LandingPage/LandingPage';
 import AboutMe from './pages/AboutMePage/AboutMe';
 import Experience from './pages/ExperiencePage/ExperiencePage';
@@ -12,14 +10,13 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import LeadershipPage from './components/AchievementsPageSections/LeadershipPage/LeadershipPage.jsx';
 import AuthorPage from './components/AchievementsPageSections/PublishedAuthorPage/PublishedAuthorPage.jsx';
 import AwardsPage from './components/AchievementsPageSections/AwardsCertificationPage/AwardsCertificationPage.jsx';
-import Music from './components/Music/Music.jsx';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<LightspeedTransition><LandingPage /></LightspeedTransition>} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
