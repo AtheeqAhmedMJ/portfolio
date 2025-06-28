@@ -1,0 +1,51 @@
+.orange-holo-card {
+  position: relative;
+  z-index: 20;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+  height: 70vh;
+  padding: clamp(16px, 4vw, 30px);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  box-shadow: 0 0 25px 5px rgba(255, 140, 0, 0.4);
+  backdrop-filter: blur(12px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  scrollbar-color: rgba(255, 140, 0, 0.3) transparent;
+  scrollbar-width: thin;
+}
+
+.orange-holo-card::-webkit-scrollbar {
+  width: 6px;
+}
+.orange-holo-card::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 140, 0, 0.3);
+  border-radius: 3px;
+}
+
+@media (max-width: 1024px) {
+  .orange-holo-card {
+    height: 75vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .orange-holo-card {
+    height: 80vh;
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orange-holo-card {
+    height: 85vh;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+  }
+}

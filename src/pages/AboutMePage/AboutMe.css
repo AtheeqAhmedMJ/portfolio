@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap');
+@font-face {
+  font-family: 'Ovo';
+  src: url('/src/assets/font/Ovo/Ovo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Geo';
+  src: url('/src/assets/font/Geo/Geo-Regular.ttf') format('truetype');
+}
+
+.AboutMe-Card {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 650px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.061);
+  border-radius: 15px;
+  box-shadow: 7px 4px 4px rgba(0, 0, 0, 0.143);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  z-index: 20; 
+  overflow: hidden; 
+}
+
+.AboutMe-Card .Title {
+  font-family: 'Geo', sans-serif;
+  font-size: 28px;
+  font-weight: normal; 
+  color: #ff2c2c;
+  text-align: left;
+  letter-spacing: 5px;
+  margin: 0 0 20px 0;
+  position: relative;
+  z-index: 21; 
+  text-shadow: none !important;
+  mix-blend-mode: normal !important; 
+}
+
+.AboutMe-Card .About {
+  font-family: 'Ovo', serif;
+  font-size: 17.5px;
+  text-align: justify;
+  line-height: 1.4;
+  position: relative;
+  z-index: 21; 
+}
+
+.fog-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto; 
+  overflow: hidden;
+  z-index: 5; /* Below AboutMe-Card */
+  perspective: 1200px;
+}
+
+.fog {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0) 50px,
+    rgba(255, 255, 255, 0.12) 150px,
+    transparent 300px
+  ),
+  radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 80%);
+  filter: blur(40px);
+  opacity: 0.25;
+  transform: scale(1.5) rotateZ(2deg) translateZ(0px);
+  animation: fogMove1 30s linear infinite;
+  transition: background 0.2s ease-out; 
+}
+
+.fog-container:hover .fog {
+  opacity: 0.05; 
+}
+
+.fog::before,
+.fog::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 80%);
+  filter: blur(45px);
+  opacity: 0.15;
+}
+
+.fog::before {
+  animation: fogMove2 40s linear infinite reverse;
+  transform: scale(1.2) rotateZ(-1deg) translateZ(-50px);
+}
+
+.fog::after {
+  animation: fogMove3 50s linear infinite;
+  transform: scale(1.4) rotateZ(1deg) translateZ(50px);
+}
+
+.fog-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  opacity: 0.3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.layer1 {
+  animation: fogImageMove1 60s linear infinite;
+  transform: scale(1.2) translateZ(-100px);
+}
+
+.layer2 {
+  animation: fogImageMove2 90s linear infinite reverse;
+  transform: scale(1.3) translateZ(0px);
+}
+
+.layer3 {
+  animation: fogImageMove3 120s linear infinite;
+  transform: scale(1.4) translateZ(100px);
+}
+.Barcode-Message {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typeBarcode 3s steps(36, end) 1 forwards;
+}
+
+
+/* Fog Keyframes */
+@keyframes fogMove1 {
+  0% { transform: translateX(0) translateY(0) scale(1.5) rotateZ(2deg); }
+  100% { transform: translateX(-20%) translateY(-10%) scale(1.6) rotateZ(3deg); }
+}
+
+@keyframes fogMove2 {
+  0% { transform: translateX(0) translateY(0) scale(1.2) rotateZ(-1deg); }
+  100% { transform: translateX(15%) translateY(-10%) scale(1.3) rotateZ(0deg); }
+}
+
+@keyframes fogMove3 {
+  0% { transform: translateX(0) translateY(0) scale(1.4) rotateZ(1deg); }
+  100% { transform: translateX(-5%) translateY(15%) scale(1.5) rotateZ(2deg); }
+}
+
+@keyframes fogImageMove1 {
+  0% { transform: translateX(0%) translateY(0%) scale(1.2); }
+  100% { transform: translateX(-10%) translateY(-5%) scale(1.25); }
+}
+
+@keyframes fogImageMove2 {
+  0% { transform: translateX(0%) translateY(0%) scale(1.3); }
+  100% { transform: translateX(8%) translateY(5%) scale(1.35); }
+}
+
+@keyframes fogImageMove3 {
+  0% { transform: translateX(0%) translateY(0%) scale(1.4); }
+  100% { transform: translateX(-5%) translateY(10%) scale(1.45); }
+}
+
+
+
+.rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10; /* still below AboutMe-Card */
+}
+
+.raindrop-wrapper {
+  position: absolute;
+  top: -10%;
+  animation: rainFall 1.5s linear infinite;
+}
+
+.raindrop {
+  width: 3px;             
+  height: 15px;          
+  background: rgba(54, 54, 54, 0.677);
+  border-radius: 50% 50% 60% 80%; 
+  transform: rotate(5deg);
+  opacity: 0.5;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.4); /* subtle glow */
+}
+
+@keyframes rainFall {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
+@media (max-width: 480px) {
+  .Barcode-Message {
+    font-size: 20px;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+@keyframes typeBarcode {
+  to {
+    width: 240px;
+  }
+}

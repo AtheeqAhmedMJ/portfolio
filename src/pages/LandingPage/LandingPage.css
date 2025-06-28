@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap');
+@font-face {
+ font-family: 'Geo-Regular';
+ src: url('./assets/font/Geo/Geo-Regular.ttf') format('truetype');
+}
+
+.Main-Title {
+ font-family: 'Geo-Regular', sans-serif;
+ font-size: clamp(62px, 6vw, 124px);
+ font-weight: normal; 
+ text-shadow: 7px 4px 4px rgba(0, 0, 0, 0.25);
+ color: #ff2c2c;
+ position: absolute;
+ top: 45%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ text-align: center;
+ letter-spacing: 11px;
+ z-index: var(--z-index);
+ margin: 0;
+}
+
+.Subtitle {
+ font-family: 'Geo-Regular', sans-serif;
+ font-size: clamp(35px, 3vw, 70px); 
+ font-weight: normal; 
+ letter-spacing: 4px;
+ color: #FFDE93;
+ position: absolute;
+ text-shadow: 7px 4px 4px rgba(0, 0, 0, 0.25);
+ top: 55%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ text-align: center;
+ opacity: 91%;
+ z-index: var(--z-index);
+ margin: 0;
+}
+
+.fade-in-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ background: radial-gradient(circle at center, #000000 0%, #1a1a1a 100%);
+ z-index: 999999;
+ opacity: 1;
+ animation: cinematicFadeOut 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+ pointer-events: none;
+}
+
+.fade-in-overlay::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(
+   45deg,
+   transparent 0%,
+   rgba(255,255,255,0.03) 25%,
+   rgba(255,255,255,0.08) 50%,
+   rgba(255,255,255,0.03) 75%,
+   transparent 100%
+ );
+ animation: shimmer 2s ease-in-out;
+}
+
+.fade-in-overlay::after {
+ content: '';
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 2px;
+ height: 80vh;
+ background: linear-gradient(
+   to bottom,
+   transparent 0%,
+   rgba(255,255,255,0.6) 20%,
+   rgba(255,255,255,0.8) 50%,
+   rgba(255,255,255,0.6) 80%,
+   transparent 100%
+ );
+ transform: translate(-50%, -50%) scaleY(0);
+ animation: verticalReveal 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes cinematicFadeOut {
+ 0% {
+   opacity: 1;
+   transform: scale(1);
+   filter: blur(0px);
+ }
+ 60% {
+   opacity: 0.3;
+   transform: scale(1.02);
+   filter: blur(1px);
+ }
+ 100% {
+   opacity: 0;
+   visibility: hidden;
+   transform: scale(1.05);
+   filter: blur(2px);
+ }
+}
+
+@keyframes shimmer {
+ 0% {
+   transform: translateX(-100%) rotate(45deg);
+   opacity: 0;
+ }
+ 50% {
+   opacity: 1;
+ }
+ 100% {
+   transform: translateX(100vw) rotate(45deg);
+   opacity: 0;
+ }
+}
+
+@keyframes verticalReveal {
+ 0% {
+   transform: translate(-50%, -50%) scaleY(0);
+   opacity: 0;
+ }
+ 50% {
+   transform: translate(-50%, -50%) scaleY(1);
+   opacity: 1;
+ }
+ 100% {
+   transform: translate(-50%, -50%) scaleY(0);
+   opacity: 0;
+ }
+}
+
+.Barcode-Message {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typeBarcode 3s steps(36, end) 1 forwards;
+}

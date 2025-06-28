@@ -1,0 +1,95 @@
+.video-editing-section {
+  text-align: center;
+  padding: 30px 20px;
+  color: white;
+  font-family: 'Geo', sans-serif;
+}
+
+.video-player-container {
+  margin-top: 20px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Controls */
+.controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  background-color: #222;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+  background-color: #444;
+}
+
+.video-filename {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #bbb;
+  word-break: break-word;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 768px) {
+  .controls button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-editing-section {
+    padding: 20px 12px;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  .controls button {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .video-filename {
+    font-size: 13px;
+  }
+}

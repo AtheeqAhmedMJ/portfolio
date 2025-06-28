@@ -1,0 +1,51 @@
+.blue-holo-card {
+  position: relative;
+  z-index: 20;
+  margin: 20px auto 60px;
+  width: 90%;
+  max-width: 1000px;
+  height: 70vh;
+  padding: clamp(16px, 4vw, 30px);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #00cfff23;
+  box-shadow: 0 0 25px 5px rgba(0, 191, 255, 0.35);
+  backdrop-filter: blur(12px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  scrollbar-color: #0000ff2e transparent;
+  scrollbar-width: thin;
+}
+
+.blue-holo-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.blue-holo-card::-webkit-scrollbar-thumb {
+  background-color: #0000ff2e;
+  border-radius: 3px;
+}
+
+@media (max-width: 1024px) {
+  .blue-holo-card {
+    height: 75vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .blue-holo-card {
+    height: 80vh;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blue-holo-card {
+    height: 85vh;
+    border-radius: 14px;
+    font-size: 0.95rem;
+  }
+}

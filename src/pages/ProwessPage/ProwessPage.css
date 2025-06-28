@@ -1,0 +1,122 @@
+.title {
+  font-family: 'Geo', sans-serif;
+  font-size: 45px;
+  color: #ed3333d3;
+  text-align: center;
+  letter-spacing: 5px;
+  position: absolute;  
+  top: 80px;          
+  left: 50%;          
+  transform: translateX(-50%);  
+  z-index: 20;       
+  background: none; 
+  background-color: transparent; 
+  text-shadow: none;
+}
+
+.prowess-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 74.4px 18.6px; 
+  gap: 27.9px;
+  position: absolute;
+  top: 4%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.prowess-card {
+  background: rgba(5, 5, 5, 0.217);
+  border-radius: 13.95px;
+  padding: 23.25px;
+  color: #ffffff;
+  font-family: 'Ovo', sans-serif;
+  box-shadow: 0 0 13.95px #0000003c; 
+  transition: transform 0.3s ease;
+}
+
+.prowess-card:nth-child(1) {
+  width: 651px; 
+  min-height: 465px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prowess-card:nth-child(1) .prowess-categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18.6px; 
+  width: 100%;
+}
+
+.prowess-card:hover {
+  transform: scale(1.03);
+}
+
+.prowess-title {
+  font-family: 'Geo', sans-serif;
+  font-size: 27.9px;
+  color: #fffefe;
+  margin-bottom: 11.16px; 
+  text-align: center;
+  letter-spacing: 0.93px; 
+}
+
+.prowess-category {
+  margin-bottom: 11.16px;
+}
+
+.category-label {
+  font-family: 'Geo', sans-serif; 
+  color: #ffffff;
+  font-size: 22.32px; 
+  margin-bottom: 4.65px; 
+}
+
+.category-list {
+  list-style-type: disc;
+  padding-left: 18.6px; 
+}
+
+.category-item {
+  font-size: 16.74px; 
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.prowess-card:nth-child(2) {
+  width: 604.5px; 
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.Barcode-Message {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  right: 40px; 
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typeBarcode 3s steps(38, end) 1 forwards;
+}
