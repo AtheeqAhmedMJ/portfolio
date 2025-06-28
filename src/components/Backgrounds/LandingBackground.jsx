@@ -64,16 +64,20 @@ function DeathStar() {
 
   const clonedScene = useMemo(() => scene.clone(), [scene]);
 
-  useEffect(() => {
-    let fadeIn = requestAnimationFrame(function fade() {
-      setOpacity((prev) => {
-        const next = Math.min(prev + 0.5, 1);
-        if (next < 1) requestAnimationFrame(fade);
-        return next;
-      });
+useEffect(() => {
+  const fadeSpeed = 0.0333; // ≈ 1 / 30 frames = ~500ms at 60fps
+
+  let fadeIn = requestAnimationFrame(function fade() {
+    setOpacity((prev) => {
+      const next = Math.min(prev + fadeSpeed, 1);
+      if (next < 1) requestAnimationFrame(fade);
+      return next;
     });
-    return () => cancelAnimationFrame(fadeIn);
-  }, []);
+  });
+
+  return () => cancelAnimationFrame(fadeIn);
+}, []);
+
 
   useEffect(() => {
     if (clonedScene) {
