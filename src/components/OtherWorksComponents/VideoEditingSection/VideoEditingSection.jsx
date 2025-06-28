@@ -5,7 +5,7 @@ const VideoEditingSection = () => {
   const videoRef = useRef();
 
   const videoUrls = useMemo(() => {
-    const filenames = ['Edit-01.mp4', 'Edit-02.mp4','Edit-03.mp4','Edit-04.mp4']; 
+    const filenames = ['Edit-01.mp4', 'Edit-02.mp4']; 
     return filenames.map(name => `/videoList/${name}`);
   }, []);
 
