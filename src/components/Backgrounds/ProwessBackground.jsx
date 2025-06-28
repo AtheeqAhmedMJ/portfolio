@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './ProwessBackground.css';
 import Xwing from '/src/assets/Images/Xwing.png';
-import XwingBG from '../../assets/Images/XwingBG.png'; 
+import XwingBG from '/src/assets/Images/XwingBackground.png'
 
 const ProwessBackground = () => {
   const snowContainerRef = useRef(null);
