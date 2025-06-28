@@ -67,7 +67,7 @@ function DeathStar() {
   useEffect(() => {
     let fadeIn = requestAnimationFrame(function fade() {
       setOpacity((prev) => {
-        const next = Math.min(prev + 0.002, 1);
+        const next = Math.min(prev + 0.5, 1);
         if (next < 1) requestAnimationFrame(fade);
         return next;
       });
