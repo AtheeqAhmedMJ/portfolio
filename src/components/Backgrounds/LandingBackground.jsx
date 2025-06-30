@@ -59,7 +59,7 @@ export default function LandingPageBackground() {
 
 function DeathStar() {
   const ref = useRef();
-  const { scene } = useGLTF('/models/death_star.glb', true);
+  const { scene } = useGLTF('/models/Death_star.glb', true);
   const [opacity, setOpacity] = useState(0);
 
   const clonedScene = useMemo(() => scene.clone(), [scene]);
