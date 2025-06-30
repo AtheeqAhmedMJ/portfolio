@@ -22,19 +22,19 @@ const AchievementsPage = () => {
       <div className="lightsaber-card-container">
         <LightsaberCard
           title="Leadership & Community Impact"
-          videoSrc="/src/assets/videos/Green-Saber.mp4"
+          videoSrc="/videos/Green-Saber.mp4"
           glowColor="limegreen"
           to="/achievements/leadership"
         />
         <LightsaberCard
           title="Published Author"
-          videoSrc="/src/assets/videos/Blue-Saber.mp4"
+          videoSrc="/videos/Blue-Saber.mp4"
           glowColor="deepskyblue"
           to="/achievements/author"
         />
         <LightsaberCard
           title="Awards & Certification"
-          videoSrc="/src/assets/videos/Gold-Saber.mp4"
+          videoSrc="/videos/Gold-Saber.mp4"
           glowColor="orange"
           to="/achievements/awards"
         />
