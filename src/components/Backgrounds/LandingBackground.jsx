@@ -1,3 +1,4 @@
+// src/components/LandingPageBackground.jsx
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars, useGLTF } from '@react-three/drei';
 import { Suspense, useRef, useMemo, useEffect, useState } from 'react';
@@ -64,20 +65,17 @@ function DeathStar() {
 
   const clonedScene = useMemo(() => scene.clone(), [scene]);
 
-useEffect(() => {
-  const fadeSpeed = 0.0333; // ≈ 1 / 30 frames = ~500ms at 60fps
-
-  let fadeIn = requestAnimationFrame(function fade() {
-    setOpacity((prev) => {
-      const next = Math.min(prev + fadeSpeed, 1);
-      if (next < 1) requestAnimationFrame(fade);
-      return next;
+  useEffect(() => {
+    const fadeSpeed = 0.0333;
+    let fadeIn = requestAnimationFrame(function fade() {
+      setOpacity((prev) => {
+        const next = Math.min(prev + fadeSpeed, 1);
+        if (next < 1) requestAnimationFrame(fade);
+        return next;
+      });
     });
-  });
-
-  return () => cancelAnimationFrame(fadeIn);
-}, []);
-
+    return () => cancelAnimationFrame(fadeIn);
+  }, []);
 
   useEffect(() => {
     if (clonedScene) {
@@ -94,7 +92,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.rotation.z = 0.1; 
+      ref.current.rotation.z = 0.1;
     }
   }, []);
 
@@ -114,6 +112,7 @@ useEffect(() => {
   ) : null;
 }
 
+// Shared geometry/material for shooting stars
 const sharedGeometry = new THREE.SphereGeometry(0.1, 6, 6);
 const sharedMaterial = new THREE.MeshBasicMaterial({
   color: 'white',
@@ -199,4 +198,5 @@ function OptimizedEffects() {
   );
 }
 
-useGLTF.preload('/models/death_star.glb');
+// Important: preload model (fixed path)
+useGLTF.preload('/models/Death_star.glb');
