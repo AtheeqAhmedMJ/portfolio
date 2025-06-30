@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Geo-Regular';
-  src: url('./assets/font/Geo/Geo-Regular.ttf') format('truetype');
+  src: url('./font/Geo/Geo-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Ovo';
-  src: url('./assets/font/Ovo/Ovo-Regular.ttf') format('truetype');
+  src: url('./font/Ovo/Ovo-Regular.ttf') format('truetype');
 }
 
 * {
