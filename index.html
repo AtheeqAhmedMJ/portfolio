@@ -2,22 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atheeq Ahmed Portfolio</title>
-    <style>
-  html, body, #root {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    position: relative; 
-    z-index: -999999999;      
-  }
 
+    <!-- Meta tags for performance and SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Portfolio of Atheeq Ahmed, software engineer, 3D developer, and creative technologist." />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>Atheeq Ahmed Portfolio</title>
+
+    <!-- Fonts: Preconnect + Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      rel="preload" 
+      as="style" 
+      href="https://fonts.googleapis.com/css2?family=Geo&family=Ovo&display=swap" 
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Geo&family=Ovo&display=swap" 
+      />
+    </noscript>
+
+    <!-- Preload videos -->
+    <link rel="preload" href="/videos/Blue-Saber.mp4" as="video" type="video/mp4" />
+    <link rel="preload" href="/videos/Gold-Saber.mp4" as="video" type="video/mp4" />
+    <link rel="preload" href="/videos/Green-Saber.mp4" as="video" type="video/mp4" />
+
+    <!-- Preload 3D models -->
+    <link rel="preload" href="/models/Imperial_Ship_optimized.glb" as="fetch" type="model/gltf-binary" crossorigin="anonymous" />
+    <link rel="preload" href="/models/Death_star_final.glb" as="fetch" type="model/gltf-binary" crossorigin="anonymous" />
+
+    <!-- Basic CSS reset -->
+    <style>
+      html, body, #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        position: relative;
+        z-index: -999999999;
+      }
     </style>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

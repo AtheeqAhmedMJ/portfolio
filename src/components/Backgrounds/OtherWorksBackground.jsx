@@ -10,25 +10,28 @@ import DocumentationSection from '/src/components/OtherWorksComponents/Documenta
 import CreditsSection from '/src/components/OtherWorksComponents/CreditsSection/CreditsSection'; 
 
 const Ship = () => {
-  const gltf = useGLTF('/models/Imperial_Ship.glb');
+  const gltf = useGLTF('/models/Imperial_Ship_optimized.glb');
   const clonedScene = useMemo(() => gltf.scene.clone(), [gltf.scene]);
 
   useEffect(() => {
-    if (clonedScene) {
-      clonedScene.traverse((child) => {
-        if (child.isMesh && child.material) {
-          if ('emissiveIntensity' in child.material) {
-            child.material.emissiveIntensity *= 0.99;
-          }
-          if (child.material.emissive && child.material.emissive.isColor) {
-            child.material.emissive.multiplyScalar(0.99);
-          }
+    clonedScene.traverse((child) => {
+      if (child.isMesh && child.material) {
+        child.material.transparent = true;
+        child.material.opacity = 1.0;
+        child.material.envMapIntensity = 0.5;
+        child.material.needsUpdate = true;
+
+        if (child.material.map) {
+          child.material.map.anisotropy = 8;
+          child.material.map.generateMipmaps = true;
+          child.material.map.minFilter = THREE.LinearMipMapLinearFilter;
+          child.material.map.magFilter = THREE.LinearFilter;
         }
-      });
-    }
+      }
+    });
   }, [clonedScene]);
 
-  return clonedScene ? <primitive object={clonedScene} scale={0.01} /> : null;
+  return <primitive object={clonedScene} scale={0.01} />;
 };
 
 const CameraController = ({ targetPosition }) => {
@@ -41,28 +44,26 @@ const CameraController = ({ targetPosition }) => {
   return <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 3, 22]} />;
 };
 
-const OptimizedEffects = () => {
-  return (
-    <EffectComposer resolutionScale={1} multisampling={0}>
-      <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.6} intensity={0.8} radius={0.8} />
-      <Noise opacity={0.01} premultiply={false} />
-      <ChromaticAberration blendFunction={BlendFunction.COLOR_DODGE} offset={[0.001, 0.001]} />
-    </EffectComposer>
-  );
-};
+const OptimizedEffects = () => (
+  <EffectComposer resolutionScale={1} multisampling={0}>
+    <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.6} intensity={0.8} radius={0.8} />
+    <Noise opacity={0.01} premultiply={false} />
+    <ChromaticAberration blendFunction={BlendFunction.COLOR_DODGE} offset={[0.001, 0.001]} />
+  </EffectComposer>
+);
 
 const OtherWorksPageBackground = () => {
   const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(0, 3, 22));
   const [activeSection, setActiveSection] = useState('OTHER WORKS');
   const [hovered, setHovered] = useState(null);
 
-  const cameraViews = {
+  const cameraViews = useMemo(() => ({
     'OTHER WORKS': new THREE.Vector3(0, 3, 22),
     'VIDEO EDITING': new THREE.Vector3(2, 3.8, 6),
     'GRAPHIC DESIGN': new THREE.Vector3(14, 8, 14),
     'DOCUMENTATION': new THREE.Vector3(-8, 1.5, 16),
     'CREDITS': new THREE.Vector3(0, 4.3, -17.5),
-  };
+  }), []);
 
   return (
     <>
@@ -84,8 +85,6 @@ const OtherWorksPageBackground = () => {
           <OptimizedEffects />
         </Canvas>
       </div>
-
-      {/* Nav Bar */}
       <div style={{
         position: 'fixed',
         top: '40px',
@@ -143,35 +142,33 @@ const OtherWorksPageBackground = () => {
         ))}
       </div>
 
-{activeSection !== 'OTHER WORKS' && (
-  <div style={{
-    position: 'absolute',
-    top: '14%',   
-    right: '5vw',              
-    width: '40vw',
-    height: '70vh',
-    background: 'rgba(0, 0, 0, 0.07)',
-    borderRadius: '20px',
-    backdropFilter: 'blur(1px)',
-    WebkitBackdropFilter: 'blur(1px)',
-    boxShadow: '0 0 15px rgba(0, 0, 0, 0.2)',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    zIndex: 10,
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    animation: 'slideInRight 0.4s ease',
-  }}>
-    {activeSection === 'VIDEO EDITING' && <VideoEditingSection />}
-    {activeSection === 'GRAPHIC DESIGN' && <GraphicDesignSection />}
-    {activeSection === 'DOCUMENTATION' && <DocumentationSection />}
-    {activeSection === 'CREDITS' && <CreditsSection />}
-  </div>
-)}
+      {activeSection !== 'OTHER WORKS' && (
+        <div style={{
+          position: 'absolute',
+          top: '14%',
+          right: '5vw',
+          width: '40vw',
+          height: '70vh',
+          background: 'rgba(0, 0, 0, 0.07)',
+          borderRadius: '20px',
+          backdropFilter: 'blur(1px)',
+          WebkitBackdropFilter: 'blur(1px)',
+          boxShadow: '0 0 15px rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          zIndex: 10,
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          animation: 'slideInRight 0.4s ease',
+        }}>
+          {activeSection === 'VIDEO EDITING' && <VideoEditingSection />}
+          {activeSection === 'GRAPHIC DESIGN' && <GraphicDesignSection />}
+          {activeSection === 'DOCUMENTATION' && <DocumentationSection />}
+          {activeSection === 'CREDITS' && <CreditsSection />}
+        </div>
+      )}
 
-
-      {/* Inline keyframes for slide animation */}
       <style>
         {`
           @keyframes slideInRight {

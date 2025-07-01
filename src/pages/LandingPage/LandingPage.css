@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap');
 @font-face {
- font-family: 'Geo-Regular';
- src: url('./font/Geo/Geo-Regular.ttf') format('truetype');
+  font-family: 'Geo';
+  src: url('/fonts/Geo/Geo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .Main-Title {
