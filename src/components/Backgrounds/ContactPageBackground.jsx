@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
 const ContactPageBackground = () => {
   const mountRef = useRef(null);
@@ -17,9 +19,11 @@ const ContactPageBackground = () => {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(0.2, 1.2, 1);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -37,60 +41,93 @@ const ContactPageBackground = () => {
     const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
     dirLight.position.set(40, 80, 60);
     dirLight.castShadow = true;
+    dirLight.shadow.mapSize.set(1024, 1024);
     scene.add(dirLight);
 
     const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
     fillLight.position.set(-30, 20, -40);
     scene.add(fillLight);
 
+    // Lazy-load ground texture
     const textureLoader = new THREE.TextureLoader();
-    const moonTexture = textureLoader.load('/textures/moon_surface.jpg');
-    moonTexture.wrapS = moonTexture.wrapT = THREE.RepeatWrapping;
-    moonTexture.repeat.set(50, 50);
+    requestIdleCallback(() => {
+      textureLoader.load('/textures/moon_surface.jpg', (tex) => {
+        tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+        tex.repeat.set(50, 50);
+        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        tex.minFilter = THREE.LinearMipMapLinearFilter;
+        tex.magFilter = THREE.LinearFilter;
 
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(1000, 1000),
-      new THREE.MeshStandardMaterial({ map: moonTexture, roughness: 1, metalness: 0 })
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -1;
-    ground.receiveShadow = true;
-    scene.add(ground);
+        const ground = new THREE.Mesh(
+          new THREE.PlaneGeometry(1000, 1000),
+          new THREE.MeshStandardMaterial({
+            map: tex,
+            roughness: 1,
+            metalness: 0,
+          })
+        );
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = -1;
+        ground.receiveShadow = true;
+        scene.add(ground);
+      });
+    });
 
-    // DRACO SUPPORT
+    // Loaders
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.3/');
 
+    const ktx2Loader = new KTX2Loader()
+      .setTranscoderPath('https://unpkg.com/three@0.160.1/examples/jsm/libs/basis/')
+      .detectSupport(renderer);
+
     const loader = new GLTFLoader();
     loader.setDRACOLoader(dracoLoader);
+    loader.setKTX2Loader(ktx2Loader);
+    loader.setMeshoptDecoder(MeshoptDecoder);
 
     let r2d2 = null;
 
-    loader.load('/models/r2_d2.glb', (gltf) => {
-      r2d2 = gltf.scene;
-      r2d2.scale.set(2, 2, 2);
-      r2d2.position.set(0, -1, 0);
-      r2d2.traverse((child) => {
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          child.material.metalness = 0.6;
-          child.material.roughness = 0.3;
-        }
-      });
-      scene.add(r2d2);
-    });
+    const loadModel = () => {
+      loader.load(
+        '/models/r2_d2_optimized.glb',
+        (gltf) => {
+          r2d2 = gltf.scene;
+          r2d2.scale.set(2, 2, 2);
+          r2d2.position.set(0, -1, 0);
+
+          r2d2.traverse((child) => {
+            if (child.isMesh) {
+              child.frustumCulled = false;
+              child.castShadow = true;
+              child.receiveShadow = true;
+              child.material.metalness = 0.6;
+              child.material.roughness = 0.3;
+              child.material.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            }
+          });
+
+          scene.add(r2d2);
+        },
+        undefined,
+        (err) => console.error('Model failed to load', err)
+      );
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadModel, { timeout: 2000 });
+    } else {
+      setTimeout(loadModel, 200);
+    }
 
     const keys = {};
     window.addEventListener('keydown', (e) => (keys[e.key.toLowerCase()] = true));
     window.addEventListener('keyup', (e) => (keys[e.key.toLowerCase()] = false));
 
     const speed = 0.1;
-    const cameraOffset = new THREE.Vector3(0, 2.1, -3.8); // closer and higher
+    const cameraOffset = new THREE.Vector3(0, 2.1, -3.8);
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-
+    renderer.setAnimationLoop(() => {
       if (r2d2) {
         const forward = keys['w'] || keys['arrowup'];
         const back = keys['s'] || keys['arrowdown'];
@@ -130,9 +167,7 @@ const ContactPageBackground = () => {
       controls.update();
       if (camera.position.y < 1) camera.position.y = 1;
       renderer.render(scene, camera);
-    };
-
-    animate();
+    });
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -143,8 +178,23 @@ const ContactPageBackground = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', () => {});
+      window.removeEventListener('keyup', () => {});
+      renderer.setAnimationLoop(null);
       mountNode.removeChild(renderer.domElement);
       controls.dispose();
+      dracoLoader.dispose();
+      ktx2Loader.dispose();
+
+      if (r2d2) {
+        r2d2.traverse((child) => {
+          if (child.isMesh) {
+            child.geometry?.dispose();
+            if (child.material?.map) child.material.map.dispose();
+            child.material?.dispose();
+          }
+        });
+      }
     };
   }, []);
 
