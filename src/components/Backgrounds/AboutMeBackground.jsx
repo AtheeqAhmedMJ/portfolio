@@ -1,66 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import backgroundImg from '/src/assets/Images/Mil-Landscape.png';
 import spaceshipImg from '/src/assets/Images/Milinium-Falcon.png';
 import glow from "/src/assets/Images/glow.png";
 
 const AboutMeBackground = () => {
-  const [setOffset] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-    setOffset({ x, y });
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <div style={{
-      width: '100vw',
-      height: '100vh',
-      backgroundImage: `url(${backgroundImg})`,
-      backgroundSize: '105%',
-      backgroundPosition: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      animation: 'backgroundDrift 15s ease-in-out infinite'
-    }}>
-      <img 
-        src={spaceshipImg} 
-        alt="Spaceship" 
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '75%',
-          transform: 'translate(-50%, -50%)',
-          width: '900px',
-          pointerEvents: 'none',
-          animation: 'float 4s ease-in-out infinite',
-          zIndex: 2
-        }} 
-      />
-      <img 
-        src={glow} 
-        alt="Thruster Glow" 
-        style={{
-          position: 'absolute',
-          top: '72%',
-          left: '82%',
-          transform: 'translate(-70%, -90%) scale(1) rotate(33deg)',
-          width: '300px',
-          pointerEvents: 'none',
-          animation: 'glowPulse 2s ease-in-out infinite, float 4s ease-in-out infinite',
-          zIndex: 1
-        }} 
-      />
+    <div className="about-bg">
+      <img src={spaceshipImg} alt="Spaceship" className="spaceship" />
+      <img src={glow} alt="Thruster Glow" className="thruster-glow" />
+
       <style>{`
+        .about-bg {
+          width: 100vw;
+          height: 100vh;
+          background: url(${backgroundImg}) center / 105% no-repeat;
+          position: relative;
+          overflow: hidden;
+          animation: backgroundDrift 15s ease-in-out infinite;
+        }
+
+        .spaceship {
+          position: absolute;
+          top: 50%;
+          left: 75%;
+          transform: translate(-50%, -50%);
+          width: clamp(200px, 45vw, 600px);
+          pointer-events: none;
+          animation: float 4s ease-in-out infinite;
+          z-index: 2;
+          will-change: transform;
+        }
+
+        .thruster-glow {
+          position: absolute;
+          top: 63%;
+          left: 82%;
+          transform: translate(-70%, -90%) rotate(33deg);
+          width: clamp(80px, 15vw, 300px);
+          pointer-events: none;
+          animation: glowPulse 2s ease-in-out infinite, float 4s ease-in-out infinite;
+          z-index: 1;
+          will-change: transform, opacity, filter;
+        }
+
         @keyframes float {
-          0% { transform: translate(-50%, -50%) translateY(0px); }
+          0% { transform: translate(-50%, -50%) translateY(0); }
           50% { transform: translate(-50%, -50%) translateY(-10px); }
-          100% { transform: translate(-50%, -50%) translateY(0px); }
+          100% { transform: translate(-50%, -50%) translateY(0); }
         }
 
         @keyframes glowPulse {
@@ -75,6 +61,12 @@ const AboutMeBackground = () => {
           50% { background-position: 50% 53%; }
           75% { background-position: 47% 47%; }
           100% { background-position: 50% 50%; }
+        }
+
+        @media (max-width: 1023px) {
+          .about-bg {
+            display: none;
+          }
         }
       `}</style>
     </div>

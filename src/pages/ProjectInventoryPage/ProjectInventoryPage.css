@@ -82,6 +82,7 @@ html, body {
   height: 80vh;
   z-index: 10;
   pointer-events: none;
+  
 }
 
 .Mando img {
