@@ -1,6 +1,6 @@
 .lightsaber-card {
   width: clamp(260px, 80vw, 350px);
-  height: clamp(400px, 85vh, 600px);
+  height: clamp(300px, 65vh, 600px); /* dynamic height based on screen */
   border-radius: 20px;
   overflow: hidden;
   background-color: black;
@@ -22,6 +22,7 @@
   top: 0;
   left: 0;
   z-index: 1;
+  animation: lightsaberGlow 2s infinite alternate;
 }
 
 .lightsaber-title {
@@ -37,12 +38,14 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
-/* Optional: Reduce hover scale on touch devices */
 @media (hover: none) {
   .lightsaber-card:hover {
     transform: none;
   }
 }
-.lightsaber-card .lightsaber-video {
-  animation: lightsaberGlow 2s infinite alternate;
-} 
+
+@media (max-height: 700px) {
+  .lightsaber-title {
+    padding: 0.6rem;
+  }
+}
