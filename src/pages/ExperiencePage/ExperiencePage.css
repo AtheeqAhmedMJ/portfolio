@@ -31,17 +31,6 @@ html, body {
   overflow-y: auto;
 }
 
-.bg-image-scroll {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  background: url('/src/assets/Images/StarsBG.jpg') top center / cover repeat-y;
-  z-index: -5;
-}
-
-/* Millennium Falcon Floating Image */
 .TopViewMillennium {
   position: fixed;
   bottom: 80px;

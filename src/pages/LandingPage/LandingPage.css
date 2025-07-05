@@ -18,8 +18,11 @@
  transform: translate(-50%, -50%);
  text-align: center;
  letter-spacing: 11px;
- z-index: var(--z-index);
+ z-index: 20;
  margin: 0;
+ white-space: nowrap;
+ overflow: visible;
+ width: max-content;
 }
 
 .Subtitle {
@@ -35,8 +38,11 @@
  transform: translate(-50%, -50%);
  text-align: center;
  opacity: 91%;
- z-index: var(--z-index);
+ z-index: 20;
  margin: 0;
+ white-space: nowrap;
+ overflow: visible;
+ width: max-content;
 }
 
 .fade-in-overlay {
@@ -150,9 +156,143 @@
   user-select: none;
   line-height: 1;
   text-align: center;
-
   white-space: nowrap;
   overflow: hidden;
   width: 0;
   animation: typeBarcode 3s steps(36, end) 1 forwards;
+}
+
+/* Dynamic Responsive Design */
+
+/* Responsive breakpoints for layout adjustments */
+@media screen and (max-width: 1200px) {
+  .Main-Title {
+    font-size: clamp(50px, 5vw, 100px);
+    letter-spacing: clamp(2px, 0.8vw, 8px);
+  }
+  
+  .Subtitle {
+    font-size: clamp(28px, 2.5vw, 56px);
+    letter-spacing: clamp(1px, 0.4vw, 3px);
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(20px, 2.5vw, 24px);
+    top: clamp(20px, 2vh, 30px);
+    right: clamp(20px, 2vw, 30px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Main-Title {
+    font-size: clamp(38px, 4.5vw, 70px);
+    letter-spacing: clamp(1px, 0.6vw, 6px);
+    top: 42%;
+  }
+  
+  .Subtitle {
+    font-size: clamp(22px, 2.2vw, 42px);
+    letter-spacing: clamp(0.5px, 0.3vw, 2px);
+    top: 58%;
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(16px, 2vw, 20px);
+    top: clamp(15px, 2vh, 25px);
+    right: clamp(15px, 2vw, 25px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Main-Title {
+    font-size: clamp(28px, 4vw, 50px);
+    letter-spacing: clamp(0.5px, 0.4vw, 3px);
+    top: 40%;
+  }
+  
+  .Subtitle {
+    font-size: clamp(18px, 2vw, 32px);
+    letter-spacing: clamp(0.2px, 0.2vw, 1px);
+    top: 60%;
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(12px, 1.8vw, 16px);
+    top: clamp(10px, 1.5vh, 20px);
+    right: clamp(10px, 1.5vw, 20px);
+  }
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 1920px) {
+  .Main-Title {
+    font-size: clamp(80px, 5vw, 140px);
+    letter-spacing: clamp(6px, 1.2vw, 15px);
+  }
+  
+  .Subtitle {
+    font-size: clamp(45px, 2.5vw, 80px);
+    letter-spacing: clamp(2px, 0.6vw, 6px);
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(24px, 2vw, 32px);
+    top: clamp(30px, 3vh, 50px);
+    right: clamp(30px, 3vw, 50px);
+  }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  .Main-Title {
+    font-size: clamp(32px, 4vw, 60px);
+    letter-spacing: clamp(1px, 0.6vw, 6px);
+    top: 35%;
+  }
+  
+  .Subtitle {
+    font-size: clamp(20px, 2vw, 38px);
+    letter-spacing: clamp(0.5px, 0.3vw, 3px);
+    top: 65%;
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(14px, 2vw, 20px);
+    top: clamp(8px, 2vh, 20px);
+    right: clamp(8px, 2vw, 20px);
+  }
+}
+
+/* Portrait orientation on mobile */
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  .Main-Title {
+    font-size: clamp(26px, 4.2vw, 45px);
+    letter-spacing: clamp(0.5px, 0.5vw, 3px);
+  }
+  
+  .Subtitle {
+    font-size: clamp(16px, 2.2vw, 28px);
+    letter-spacing: clamp(0.3px, 0.2vw, 1.5px);
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+  .Main-Title {
+    font-size: clamp(20px, 3.5vw, 35px);
+    letter-spacing: clamp(0.3px, 0.3vw, 2px);
+    top: 38%;
+  }
+  
+  .Subtitle {
+    font-size: clamp(14px, 2vw, 24px);
+    letter-spacing: clamp(0.1px, 0.1vw, 1px);
+    top: 62%;
+  }
+  
+  .Barcode-Message {
+    font-size: clamp(10px, 1.5vw, 14px);
+    top: clamp(5px, 1vh, 15px);
+    right: clamp(5px, 1vw, 15px);
+  }
 }

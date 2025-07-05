@@ -1,6 +1,6 @@
 .title {
   font-family: 'Geo', sans-serif;
-  font-size: 45px;
+  font-size: clamp(32px, 4vw, 45px);
   color: #ed3333d3;
   text-align: center;
   letter-spacing: 5px;
@@ -12,34 +12,41 @@
   background: none; 
   background-color: transparent; 
   text-shadow: none;
+  max-width: 90vw;
+  word-wrap: break-word;
 }
 
 .prowess-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 74.4px 18.6px; 
-  gap: 27.9px;
+  padding: 15px 8px; 
+  gap: 20px;
   position: absolute;
-  top: 4%;
+  top: clamp(50px, 12vh, 80px);
   left: 0;
   width: 100%;
   z-index: 10;
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .prowess-card {
   background: rgba(5, 5, 5, 0.217);
   border-radius: 13.95px;
-  padding: 23.25px;
+  padding: clamp(10px, 1.5vw, 20px);
   color: #ffffff;
   font-family: 'Ovo', sans-serif;
   box-shadow: 0 0 13.95px #0000003c; 
   transition: transform 0.3s ease;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .prowess-card:nth-child(1) {
-  width: 651px; 
-  min-height: 465px;
+  width: clamp(300px, 40vw, 500px); 
+  min-height: clamp(250px, 30vh, 420px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +55,7 @@
 .prowess-card:nth-child(1) .prowess-categories {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18.6px; 
+  gap: clamp(12px, 1.5vw, 20px); 
   width: 100%;
 }
 
@@ -58,38 +65,39 @@
 
 .prowess-title {
   font-family: 'Geo', sans-serif;
-  font-size: 27.9px;
+  font-size: clamp(14px, 2vw, 26px);
   color: #fffefe;
-  margin-bottom: 11.16px; 
+  margin-bottom: clamp(6px, 1vw, 10px); 
   text-align: center;
   letter-spacing: 0.93px; 
 }
 
 .prowess-category {
-  margin-bottom: 11.16px;
+  margin-bottom: clamp(5px, 1vw, 10px);
 }
 
 .category-label {
   font-family: 'Geo', sans-serif; 
   color: #ffffff;
-  font-size: 22.32px; 
-  margin-bottom: 4.65px; 
+  font-size: clamp(11px, 1.6vw, 20px); 
+  margin-bottom: clamp(2px, 0.5vw, 4px); 
 }
 
 .category-list {
   list-style-type: disc;
-  padding-left: 18.6px; 
+  padding-left: clamp(10px, 1.2vw, 18px); 
 }
 
 .category-item {
-  font-size: 16.74px; 
-  line-height: 1.6;
+  font-size: clamp(10px, 1.2vw, 16px); 
+  line-height: 1.4;
   font-weight: bold;
 }
 
 .prowess-card:nth-child(2) {
-  width: 604.5px; 
+  width: clamp(280px, 38vw, 470px); 
 }
+
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -101,9 +109,10 @@
     transform: translateY(0px);
   }
 }
+
 .Barcode-Message {
   font-family: 'Libre Barcode 128 Text', sans-serif;
-  font-size: 28px;
+  font-size: clamp(20px, 3vw, 28px);
   color: #ffffff;
   position: fixed;
   top: 40px;
@@ -114,9 +123,64 @@
   user-select: none;
   line-height: 1;
   text-align: center;
-
   white-space: nowrap;
   overflow: hidden;
   width: 0;
   animation: typeBarcode 3s steps(38, end) 1 forwards;
+  max-width: calc(100vw - 80px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .prowess-container {
+    padding: 35px 10px;
+    gap: 20px;
+    top: clamp(100px, 10vh, 140px);
+  }
+  
+  .prowess-card:nth-child(1) .prowess-categories {
+    grid-template-columns: 1fr;
+  }
+  
+  .prowess-card {
+    padding: 18px;
+  }
+  
+  .Barcode-Message {
+    top: 20px;
+    right: 20px;
+    max-width: calc(100vw - 40px);
+  }
+  
+  .title {
+    top: 50px;
+    padding: 0 20px;
+  }
+}
+
+/* Ultra-wide screen adjustments */
+@media (min-width: 1920px) {
+  .prowess-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .prowess-container {
+    padding: 25px 5px;
+    top: clamp(80px, 8vh, 120px);
+  }
+  
+  .prowess-card {
+    padding: 15px;
+  }
+  
+  .title {
+    top: 30px;
+    letter-spacing: 2px;
+  }
 }
