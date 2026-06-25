@@ -5,10 +5,7 @@ const DocumentationSection = () => {
   const docs = useMemo(
     () => [
       { name: 'Award Nomination', file: 'Document01.pdf' },
-      { name: 'Report', file: 'Document02.pdf' },
-
-      //{ name: 'Architecture Notes', file: 'architecture_notes.pdf' },
-     // { name: 'Changelog', file: 'changelog.pdf' }
+      { name: 'Report', file: 'Document02.pdf' }''
     ],
     []
   );
