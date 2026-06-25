@@ -6,7 +6,6 @@ const DocumentationSection = () => {
     () => [
       { name: 'Award Nomination', file: 'Document01.pdf' },
       { name: 'Report', file: 'Document02.pdf' },
-      { name: 'Event Report', file: 'Document03.pdf' },
 
       //{ name: 'Architecture Notes', file: 'architecture_notes.pdf' },
      // { name: 'Changelog', file: 'changelog.pdf' }
