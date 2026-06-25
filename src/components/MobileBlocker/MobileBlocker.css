@@ -1,0 +1,17 @@
+.mobile-blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000f0;
+  color: #fff;
+  z-index: 99999;
+  font-family: 'Geo', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 4vw, 22px);
+  text-align: center;
+  padding: 20px;
+}

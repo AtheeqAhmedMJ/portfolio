@@ -1,0 +1,137 @@
+/* ============================================================
+   GLOBAL FONTS — single source of truth, WOFF2 for fast load
+   ============================================================ */
+@font-face {
+  font-family: 'Geo-Regular';
+  src: url('./assets/font/Geo/Geo-Regular.woff2') format('woff2'),
+       url('./assets/font/Geo/Geo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geo-Regular';
+  src: url('./assets/font/Geo/Geo-Italic.woff2') format('woff2'),
+       url('./assets/font/Geo/Geo-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ovo-Regular';
+  src: url('./assets/font/Ovo/Ovo-Regular.woff2') format('woff2'),
+       url('./assets/font/Ovo/Ovo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+  --primary-font: 'Geo-Regular', sans-serif;
+  --secondary-font: 'Ovo-Regular', serif;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #d0d0d0;
+  --primary-font-size: 16px;
+  --secondary-font-size: 14px;
+  --z-index: 10;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.primary-text {
+  font-family: var(--primary-font);
+  color: var(--primary-text-color);
+  font-size: var(--primary-font-size);
+  position: absolute;
+  z-index: var(--z-index);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.secondary-text {
+  font-family: var(--secondary-font);
+  color: var(--secondary-text-color);
+  font-size: var(--secondary-font-size);
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ============================================================
+   FONT ALIASES — so legacy CSS using 'Geo' or 'Ovo' (without -Regular)
+   also loads the same WOFF2 files, not a network request
+   ============================================================ */
+@font-face {
+  font-family: 'Geo';
+  src: url('./assets/font/Geo/Geo-Regular.woff2') format('woff2'),
+       url('./assets/font/Geo/Geo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ovo';
+  src: url('./assets/font/Ovo/Ovo-Regular.woff2') format('woff2'),
+       url('./assets/font/Ovo/Ovo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.Barcode-Message-Right {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 9999999999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  font-size: 28px;
+  animation: typeBarcode 3s steps(36, end) 1 forwards;
+}
+.Barcode-Message-Left {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  z-index: 9999999999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  font-size: 28px;
+  animation: typeBarcode 3s steps(36, end) 1 forwards;
+}
+
+@keyframes typeBarcode {
+  from { width: 0; }
+  to   { width: 360px; }
+}

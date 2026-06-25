@@ -1,0 +1,88 @@
+.Cards-Container {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap; /* Make cards wrap on smaller screens */
+  justify-content: center;
+  gap: 30px;
+  z-index: 50;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.Card {
+  flex: 1 1 280px; /* Let cards resize on small screens */
+  max-width: 320px;
+  min-width: 220px;
+  padding: 15px;
+  background: rgba(79, 78, 78, 0.122);
+  border-radius: 45px;
+  box-shadow: 5px 3px 6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.046);
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform 0.3s ease;
+  z-index: 60;
+}
+
+.Card:hover {
+  transform: scale(1.05);
+}
+
+.Barcode-Message {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: #ffffff;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0.85;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typeBarcode 3s steps(36, end) 1 forwards;
+}
+
+/* --- Responsive Tweaks --- */
+
+@media (max-width: 768px) {
+  .Cards-Container {
+    flex-direction: column;
+    align-items: center;
+    top: 60px;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .Card {
+    width: 90%;
+    max-width: 300px;
+    font-size: 15px;
+  }
+
+  .Barcode-Message {
+    top: 20px;
+    right: 20px;
+    font-size: clamp(14px, 4vw, 22px);
+  }
+}
+
+@media (max-width: 480px) {
+  .Card {
+    padding: 12px;
+    border-radius: 30px;
+    font-size: 14px;
+  }
+}

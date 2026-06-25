@@ -1,0 +1,205 @@
+:root {
+  --color-primary: #fa0000;
+  --color-secondary: rgba(255, 222, 147, 0.91);
+  --color-background: rgba(118, 116, 116, 0.177);
+  --font-primary: 'Geo-Regular', sans-serif;
+  --text-shadow: 7px 4px 4px var(--color-text-shadow);
+  --navbar-border-radius: 12px;
+  --navbar-opacity: 0.60;
+  --z-index-navbar: 9999;
+}
+
+.Nav-Bar {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  min-width: fit-content;
+  max-width: 90%;
+  border-radius: var(--navbar-border-radius);
+  background-color: var(--color-background);
+  opacity: var(--navbar-opacity);
+  z-index: var(--z-index-navbar);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 20px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.427);
+}
+
+.Nav-Bar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.Nav-Bar ul::-webkit-scrollbar {
+  display: none;
+}
+
+.Nav-Bar li {
+  margin: 0 20px;
+  font-family: var(--font-primary);
+  font-size: 24px !important;
+  color: var(--color-primary);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  text-shadow: none;
+  text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.Nav-Bar li:hover {
+  color: var(--color-secondary);
+}
+
+.Nav-Bar li::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-secondary);
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.4s;
+}
+
+.Nav-Bar li:hover::after {
+  width: 80%;
+}
+
+.Nav-Bar a {
+  color: inherit;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  text-shadow: inherit;
+}
+
+@media screen and (max-width: 1920px) {
+  .Nav-Bar {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .Nav-Bar {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .Nav-Bar {
+    width: 80%;
+  }
+  
+  .Nav-Bar li {
+    font-size: 22px !important;
+    margin: 0 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Nav-Bar {
+    width: 85%;
+  }
+  
+  .Nav-Bar li {
+    font-size: 20px !important;
+    margin: 0 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Nav-Bar {
+    width: 90%;
+    padding: 15px 20px;
+  }
+  
+  .Nav-Bar li {
+    font-size: 18px !important;
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Nav-Bar {
+    width: 95%;
+    padding: 12px 15px;
+  }
+  
+  .Nav-Bar li {
+    font-size: 16px !important;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Nav-Bar {
+    width: 98%;
+    padding: 10px 12px;
+  }
+  
+  .Nav-Bar li {
+    font-size: 14px !important;
+    margin: 0 6px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .Nav-Bar {
+    width: 50%;
+  }
+  
+  .Nav-Bar li {
+    font-size: 28px !important;
+    margin: 0 25px;
+  }
+}
+
+@media screen and (min-height: 1080px) {
+  .Nav-Bar {
+    bottom: 5%;
+  }
+}
+
+@media screen and (min-height: 1440px) {
+  .Nav-Bar {
+    bottom: 4%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .Nav-Bar {
+    bottom: 10%;
+    padding: 15px 25px;
+  }
+  
+  .Nav-Bar li {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (max-height: 480px) {
+  .Nav-Bar {
+    bottom: 15%;
+    padding: 12px 20px;
+  }
+  
+  .Nav-Bar li {
+    font-size: 18px !important;
+  }
+}

@@ -1,0 +1,841 @@
+
+.awards-hub-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 5;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.awards-hub-card {
+  position: relative;
+  flex: 1 1 320px;
+  min-height: 600px;
+  border-radius: 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 165, 0, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.awards-hub-card:hover {
+  transform: translateY(-6px);
+}
+
+.awards-hub-card--awards:hover {
+  border-color: rgba(255, 215, 0, 0.55);
+}
+
+.awards-hub-card--certs:hover {
+  border-color: rgba(255, 140, 0, 0.55);
+}
+
+.awards-hub-card__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.awards-hub-card__glow--gold {
+  box-shadow: inset 0 0 60px 10px rgba(255, 215, 0, 0.18);
+}
+
+.awards-hub-card__glow--orange {
+  box-shadow: inset 0 0 60px 10px rgba(255, 140, 0, 0.18);
+}
+
+.awards-hub-card:hover .awards-hub-card__glow {
+  opacity: 1;
+}
+
+.awards-hub-card__content {
+  position: relative;
+  z-index: 2;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.awards-hub-card__eyebrow {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 222, 147, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.awards-hub-card__title {
+  font-family: 'Ovo', serif;
+  font-size: 2.2rem;
+  color: #FFDE93;
+  margin: 0;
+  text-shadow: 0 0 12px rgba(255, 165, 0, 0.4);
+}
+
+.awards-hub-card__desc {
+  font-family: 'Ovo', serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.awards-hub-card:hover .awards-hub-card__cta {
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+  .awards-hub-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 92%;
+  }
+
+  .awards-hub-card {
+    min-height: 240px;
+    flex: 1 1 100%;
+  }
+
+  .awards-hub-card__title {
+    font-size: 1.7rem;
+  }
+}
+
+.award-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255, 165, 0, 0.05);
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+.award-item-card__badge {
+  font-family: 'Ovo', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.award-item-card__badge--winner {
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.award-item-card__badge--nominee {
+  background: rgba(255, 140, 0, 0.1);
+  color: #FFA500;
+  border: 1px solid rgba(255, 140, 0, 0.3);
+}
+
+.award-item-card__title {
+  font-family: 'Ovo', serif;
+  font-size: 1.1rem;
+  color: #FFDE93;
+  margin: 0 0 8px 0;
+}
+
+.award-item-card__desc {
+  font-family: 'Ovo', serif;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.882);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.award-item-card__link {
+  font-family: 'Ovo', serif;
+  color: #FFDE93;
+  text-decoration: underline;
+  font-size: 0.88rem;
+  display: inline-block;
+  margin-top: 10px;
+  transition: color 0.2s;
+}
+
+.award-item-card__link:hover {
+  color: #FFA500;
+}
+
+.award-cert-image-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.award-cert-image {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px 5px rgba(255, 140, 0, 0.45);
+}
+
+/* â”€â”€ CERTIFICATIONS PAGE â”€â”€ */
+.cert-search-wrap {
+  margin-bottom: 16px;
+}
+
+.cert-search {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: 'Ovo', serif;
+  font-size: 0.95rem;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cert-search::placeholder {
+  color: rgba(255, 255, 255, 0.809);
+}
+
+.cert-search:focus {
+  border-color: rgba(255, 165, 0, 0.7);
+}
+
+.cert-tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cert-tag-btn {
+  font-family: 'Ovo', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  background: transparent;
+  color: rgba(255, 222, 147, 0.65);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cert-tag-btn:hover {
+  border-color: rgba(255, 165, 0, 0.6);
+  color: #FFDE93;
+}
+
+.cert-tag-btn--active {
+  background: rgba(255, 140, 0, 0.2);
+  border-color: rgba(255, 140, 0, 0.7);
+  color: #FFA500;
+}
+
+.cert-count {
+  font-family: 'Ovo', serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.cert-empty {
+  font-family: 'Ovo', serif;
+  color: rgba(255, 255, 255, 0.4);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* â”€â”€ Cert Card â€” generated design, zero network requests â”€â”€ */
+.cert-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--cert-accent) 50%, transparent);
+  box-shadow: 0 0 18px 2px color-mix(in srgb, var(--cert-accent) 20%, transparent);
+}
+
+/* Thin accent strip at top â€” the card's identity marker */
+.cert-card__strip {
+  height: 3px;
+  width: 100%;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.cert-card__inner {
+  padding: 16px 18px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Header: avatar + issuer + date */
+.cert-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Initials circle */
+.cert-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ovo', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.cert-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cert-card__platform {
+  font-family: 'Ovo', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-card__date {
+  font-family: 'Ovo', serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Cert name */
+.cert-card__name {
+  font-family: 'Ovo', serif;
+  font-size: 0.9rem;
+  color: #FFDE93;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Tags */
+.cert-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.cert-card__tag {
+  font-family: 'Ovo', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  padding: 2px 9px;
+  border-radius: 10px;
+}
+
+/* Verify footer */
+.cert-card__verify {
+  display: block;
+  font-family: 'Ovo', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 16px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  transition: background 0.18s;
+  margin-top: auto;
+}
+
+.cert-card__verify:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cert-card__verify--none {
+  font-family: 'Ovo', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+}
+:root {
+  --font-body: 'Ovo', sans-serif;
+  --font-heading: 'Geo', serif;
+  --color-heading: #ff2c2c;
+  --color-body: #ffffff;
+
+  /* Silver palette */
+  --silver:        #a8b2c4;
+  --silver-dim:    #6b7589;
+  --silver-bright: #c8d0dc;
+  --silver-glow:   rgba(168, 178, 196, 0.18);
+}
+
+/* â”€â”€ Shared page wrapper â”€â”€ */
+.achievements-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* â”€â”€ Background â”€â”€ */
+.bg-image {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('/src/assets/Images/StarsBG.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transform: scaleX(-1);
+  z-index: -5;
+}
+
+.stars-bg {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -4;
+}
+
+/* â”€â”€ Barcode corner label â”€â”€ */
+.Barcode-Message {
+  position: fixed;
+  top: 0; left: 0;
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.12);
+  padding: 8px 12px;
+  letter-spacing: 2px;
+  z-index: 1;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.achievements-title {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 4.5vw, 38px);
+  text-align: center;
+  margin: 60px auto 18px;
+  color: var(--color-heading);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(255, 44, 44, 0.45);
+}
+
+.orange-holo-card {
+  position: relative;
+  z-index: 20;
+  margin: 0 auto 60px;
+  width: 88%;
+  max-width: 1020px;
+  height: 72vh;
+  padding: clamp(16px, 3vw, 28px);
+  border-radius: 18px;
+  background: rgba(6, 6, 10, 0.50);
+  border: 1px solid rgba(255, 140, 50, 0.16);
+  box-shadow:
+    0 0 32px 4px rgba(255, 140, 50, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  /* Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 140, 50, 0.30) transparent;
+}
+
+.orange-holo-card::-webkit-scrollbar        { width: 5px; }
+.orange-holo-card::-webkit-scrollbar-track  { background: transparent; }
+.orange-holo-card::-webkit-scrollbar-thumb  {
+  background: rgba(255, 140, 50, 0.30);
+  border-radius: 3px;
+}
+.orange-holo-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 140, 50, 0.50);
+}
+
+.achievement-detail-text {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.7vw, 15px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.award-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 140, 50, 0.18);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.award-item-card:hover {
+  background: rgba(255, 140, 50, 0.06);
+  border-color: rgba(255, 140, 50, 0.30);
+}
+
+.award-item-card__badge {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.award-item-card__badge--winner {
+  background: rgba(255, 215, 0, 0.12);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.35);
+}
+
+.award-item-card__badge--nominee {
+  background: rgba(192, 192, 192, 0.12);
+  color: #c8d0dc;
+  border: 1px solid rgba(192, 192, 192, 0.30);
+}
+
+.award-item-card__body { flex: 1; }
+
+.award-item-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(13px, 1.7vw, 15px);
+  color: #ffffff;
+  margin: 0 0 8px;
+  letter-spacing: 0.4px;
+}
+
+.award-item-card__desc {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: rgba(255, 255, 255, 0.70);
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.award-item-card__link {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: rgba(255, 140, 50, 0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.award-item-card__link:hover { color: #ffd700; }
+
+/* Award photo */
+.award-cert-image-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding-bottom: 4px;
+}
+
+.award-cert-image {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 140, 50, 0.20);
+  box-shadow: 0 0 24px rgba(255, 140, 50, 0.12);
+}
+
+.cert-search-wrap { margin-bottom: 14px; }
+
+.cert-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(168, 178, 196, 0.28);
+  background: rgba(168, 178, 196, 0.07);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cert-search::placeholder { color: rgba(255, 255, 255, 0.35); }
+.cert-search:focus {
+  border-color: rgba(168, 178, 196, 0.55);
+  background: rgba(168, 178, 196, 0.10);
+}
+
+/* Tag pills */
+.cert-tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.cert-tag-btn {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  border: 1px solid rgba(168, 178, 196, 0.25);
+  background: transparent;
+  color: rgba(168, 178, 196, 0.72);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.cert-tag-btn:hover {
+  background: rgba(168, 178, 196, 0.12);
+  color: var(--silver-bright);
+  border-color: rgba(168, 178, 196, 0.45);
+}
+.cert-tag-btn--active {
+  background: rgba(168, 178, 196, 0.18);
+  border-color: rgba(168, 178, 196, 0.55);
+  color: var(--silver-bright);
+}
+
+
+.cert-count {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.6px;
+  margin-bottom: 16px;
+}
+
+
+.cert-empty {
+  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-body);
+  font-style: italic;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 14px;
+}
+
+.cert-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: rgba(12, 14, 22, 0.65);
+  border: 1px solid rgba(168, 178, 196, 0.18);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(168, 178, 196, 0.14);
+}
+
+.cert-card__strip {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--silver-dim)   0%,
+    var(--silver-bright) 50%,
+    var(--silver-dim)   100%
+  );
+}
+
+.cert-card__inner {
+  padding: 14px 16px 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Header row */
+.cert-card__header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+/* Initials avatar â€” silver tint */
+.cert-card__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: rgba(168, 178, 196, 0.10);
+  border: 1.5px solid rgba(168, 178, 196, 0.28);
+  color: var(--silver);
+}
+
+.cert-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.cert-card__platform {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: var(--silver);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-card__date {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+/* Cert name */
+.cert-card__name {
+  font-family: var(--font-heading);
+  font-size: clamp(11px, 1.3vw, 13px);
+  color: #e4e8f0;
+  margin: 0;
+  line-height: 1.45;
+  letter-spacing: 0.3px;
+}
+
+/* Tags */
+.cert-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cert-card__tag {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  letter-spacing: 0.6px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(168, 178, 196, 0.09);
+  color: var(--silver);
+  border: 1px solid rgba(168, 178, 196, 0.22);
+}
+
+/* Footer verify link */
+.cert-card__verify {
+  display: block;
+  padding: 9px 16px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+  color: var(--silver);
+  border-top: 1px solid rgba(168, 178, 196, 0.12);
+  text-align: right;
+  transition: background 0.18s, color 0.18s;
+}
+.cert-card__verify:hover {
+  background: rgba(168, 178, 196, 0.07);
+  color: var(--silver-bright);
+}
+.cert-card__verify--none {
+  color: rgba(255, 255, 255, 0.22);
+  font-style: italic;
+  cursor: default;
+}
+.cert-card__verify--none:hover {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 900px) {
+  .cert-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .orange-holo-card {
+    height: 78vh;
+    width: 92%;
+    border-radius: 14px;
+  }
+  .cert-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 540px) {
+  .orange-holo-card {
+    height: 82vh;
+    width: 94%;
+    padding: 16px 14px;
+  }
+  .cert-grid { grid-template-columns: 1fr; }
+  .award-item-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .achievements-title { margin: 50px auto 14px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cert-card { transition: none; }
+  .cert-card:hover { transform: none; }
+}
