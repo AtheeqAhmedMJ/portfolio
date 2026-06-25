@@ -22,8 +22,6 @@ const AwardsCertificationPage = () => {
         HALL OF HEROES - ACHIEVEMENTS
       </div>
 
-      <NavBar />
-      <SideBar />
       <BackButton />
 
       <h1 className="achievements-title">Awards & Certifications</h1>

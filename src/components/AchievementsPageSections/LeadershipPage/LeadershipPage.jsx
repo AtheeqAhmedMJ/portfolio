@@ -19,8 +19,7 @@ const LeadershipPage = () => {
         <div className="stars3" />
       </div>
 
-      <NavBar />
-      <SideBar />
+
 
       <h1 className="achievements-title">
         Leadership & Community Impact

@@ -15,8 +15,6 @@ const PublishedAuthorPage = () => {
         <div className="stars3" />
       </div>
 
-      <NavBar />
-      <SideBar />
       <BackButton />
 
       <h1 className="achievements-title">Published Author</h1>
