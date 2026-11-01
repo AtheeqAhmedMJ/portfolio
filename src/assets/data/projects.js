@@ -216,6 +216,18 @@ const projects = [
     ],
     githubLink: "https://github.com/AtheeqAhmedMJ/SmartPark"
   }
+  {
+  id: 19,
+  title: "Star Wars Themed Personal Portfolio",
+  techStack: ["React.js", "Vite", "JavaScript", "CSS", "Vercel"],
+  overview: "An open-source personal portfolio showcasing software engineering projects, technical skills, and professional experience through a custom-designed web experience.",
+  features: [
+    "Developed a component-based portfolio using React and Vite.",
+    "Designed a custom interface to showcase projects, skills, and professional experience.",
+    "Configured production builds and continuous deployment through Vercel."
+  ],
+  githubLink: "https://github.com/AtheeqAhmedMJ/portfolio"
+},
 ];
 
 export default projects;
