@@ -158,7 +158,6 @@ html, body {
   z-index: 2;
 }
 
-/* ✅ NEW: big transparent frame around the (unchanged) timeline */
 .timeline-frame {
   position: relative;
   flex: 1 1 auto;          /* fills the space under the title */
@@ -174,9 +173,9 @@ html, body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 44, 44, 0.6) transparent;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0);
   border-radius: 25px;
-  box-shadow: 0 0 30px rgba(255, 44, 44, 0.25);
+  box-shadow: 0 0 30px rgba(255, 44, 44, 0);
 }
 
 /* slim scrollbar, inset from the rounded corners */
@@ -278,7 +277,6 @@ html, body {
   font-family: 'Geo-Regular', sans-serif;
 }
 
-/* ✅ NUMBERING REMOVED */
 .description-list {
   list-style: none;
   padding: 0;
