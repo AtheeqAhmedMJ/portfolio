@@ -82,4 +82,4 @@ const prowess = [
     ]
   }
 ];
-export default prowess
+export default prowess;
