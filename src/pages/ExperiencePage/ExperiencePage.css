@@ -2,7 +2,6 @@
   box-sizing: border-box;
 }
 
-/* ✅ GLOBAL SCROLL FIX */
 html, body {
   margin: 0;
   padding: 0;
@@ -19,7 +18,6 @@ html, body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  /* ❌ removed overflow-y: auto */
 }
 
 .TopViewMillennium {
