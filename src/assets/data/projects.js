@@ -229,7 +229,4 @@ const projects = [
     githubLink: "https://github.com/AtheeqAhmedMJ/portfolio"
   }
 ];
-
-export default projects;
-
 export default projects;
