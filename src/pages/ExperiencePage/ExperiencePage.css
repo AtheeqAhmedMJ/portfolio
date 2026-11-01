@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+/* ✅ GLOBAL SCROLL FIX */
 html, body {
   margin: 0;
   padding: 0;
@@ -16,8 +17,9 @@ html, body {
 .experience-page {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
+  height: 100dvh;      /* page itself never scrolls */
+  overflow: hidden;
 }
 
 .TopViewMillennium {
@@ -145,7 +147,11 @@ html, body {
 /* Experience Timeline */
 .experience-container {
   position: relative;
-  padding: clamp(50px, 8vh, 100px) 5vw;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  padding: clamp(50px, 8vh, 100px) 5vw clamp(16px, 4vh, 40px);
   max-width: 1200px;
   margin: auto;
   width: 100%;
@@ -155,20 +161,44 @@ html, body {
 /* ✅ NEW: big transparent frame around the (unchanged) timeline */
 .timeline-frame {
   position: relative;
+  flex: 1 1 auto;          /* fills the space under the title */
+  min-height: 0;           /* lets it shrink so it can scroll */
   width: min(96vw, 1400px);
   left: 50%;
   transform: translateX(-50%);
-  padding: clamp(10px, 3vh, 40px) 0 clamp(10px, 3vh, 40px);
+  padding: clamp(10px, 3vh, 40px) 0;
+  overflow-x: hidden;
+  overflow-y: auto;        /* ✅ scrollbar lives inside the frame */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 44, 44, 0.6) transparent;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 25px;
   box-shadow: 0 0 30px rgba(255, 44, 44, 0.25);
 }
 
+/* slim scrollbar, inset from the rounded corners */
+.timeline-frame::-webkit-scrollbar {
+  width: 6px;
+}
+.timeline-frame::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 28px;
+}
+.timeline-frame::-webkit-scrollbar-thumb {
+  background: rgba(255, 44, 44, 0.6);
+  border-radius: 999px;
+}
+.timeline-frame::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 44, 44, 0.9);
+}
+
 .timeline-center-line {
   margin: clamp(40px, 6vh, 100px) auto;
   width: 4px;
-  height: 100%;
+  height: auto;            /* grows with the entries, so the line spans all of them */
   background: #ff2c2c;
   border-radius: 2px;
 }
