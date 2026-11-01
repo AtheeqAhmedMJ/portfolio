@@ -78,15 +78,12 @@ const ExperiencePage = () => {
         <h2>Scroll Down<br />For More</h2>
       </div>
 
-      {/* OUTER BOX: title + timeline */}
       <div className="experience-container timeline-wrapper">
         <h1 className="title">EXPERIENCE</h1>
 
-        {/* INNER BOX: the timeline */}
-        <div className="timeline-container">
-          {/* centre line is now a sibling, NOT the parent of the entries */}
-          <div className="timeline-center-line" />
-
+        {/* only change: big transparent frame around the original timeline */}
+        <div className="timeline-frame">
+        <div className="timeline-center-line">
           {experiences.map((experience, index) => {
             const extractedYear =
               experience.duration.match(/\b(20\d{2})\b/)?.[0] || 'Year';
@@ -129,6 +126,7 @@ const ExperiencePage = () => {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </div>
