@@ -215,7 +215,7 @@ const projects = [
       "Integrated parking occupancy and slot availability logic."
     ],
     githubLink: "https://github.com/AtheeqAhmedMJ/SmartPark"
-  }
+  },
   {
   id: 19,
   title: "Star Wars Themed Personal Portfolio",
