@@ -1,4 +1,4 @@
- import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ExperiencePage.css';
 import experiences from '../../assets/data/experiences';
 import MillenniumFalconImage from '../../assets/Images/TopViewMillenniumFalcon.webp';
@@ -6,15 +6,15 @@ import MillenniumFalconImage from '../../assets/Images/TopViewMillenniumFalcon.w
 const ExperiencePage = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const cardRefs = useRef([]);
-    const [showInstructions, setShowInstructions] = useState(true);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowInstructions(false);
-      }, 60000); // 1 minute
-  
-      return () => clearTimeout(timer);
-    }, []);
+  const [showInstructions, setShowInstructions] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInstructions(false);
+    }, 60000); // 1 minute
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
@@ -50,34 +50,46 @@ const ExperiencePage = () => {
   return (
     <div className="experience-page">
       <div className="bg-image-scroll" />
-<div className="stars-bg">
-  <div className="nebula-layer"></div>
-  <div className="stars"></div>
-  <div className="stars2"></div>
-  <div className="stars3"></div>
-  <div className="stars-twinkle"></div>
-  <div className="shooting-stars">
-    <div className="shooting-star"></div>
-    <div className="shooting-star"></div>
-    <div className="shooting-star"></div>
-  </div>
-</div>
-      <div className="Barcode-Message-Right">
-           YOU HAVE ARRIVED AT A<br />
-           GALAXY FAR FAR AWAY - EXPERIENCE
+      <div className="stars-bg">
+        <div className="nebula-layer"></div>
+        <div className="stars"></div>
+        <div className="stars2"></div>
+        <div className="stars3"></div>
+        <div className="stars-twinkle"></div>
+        <div className="shooting-stars">
+          <div className="shooting-star"></div>
+          <div className="shooting-star"></div>
+          <div className="shooting-star"></div>
+        </div>
       </div>
-<img className="TopViewMillennium" src={MillenniumFalconImage} alt="Millennium Falcon Top View" />
 
-<div className={`Instructions ${!showInstructions ? 'hidden' : ''}`}>
+      <div className="Barcode-Message-Right">
+        YOU HAVE ARRIVED AT A<br />
+        GALAXY FAR FAR AWAY - EXPERIENCE
+      </div>
+
+      <img
+        className="TopViewMillennium"
+        src={MillenniumFalconImage}
+        alt="Millennium Falcon Top View"
+      />
+
+      <div className={`Instructions ${!showInstructions ? 'hidden' : ''}`}>
         <h2>Scroll Down<br />For More</h2>
       </div>
 
+      {/* OUTER BOX: title + timeline */}
       <div className="experience-container timeline-wrapper">
         <h1 className="title">EXPERIENCE</h1>
 
-        <div className="timeline-center-line">
+        {/* INNER BOX: the timeline */}
+        <div className="timeline-container">
+          {/* centre line is now a sibling, NOT the parent of the entries */}
+          <div className="timeline-center-line" />
+
           {experiences.map((experience, index) => {
-            const extractedYear = experience.duration.match(/\b(20\d{2})\b/)?.[0] || 'Year';
+            const extractedYear =
+              experience.duration.match(/\b(20\d{2})\b/)?.[0] || 'Year';
             const isLeft = index % 2 === 0;
 
             return (
@@ -120,7 +132,6 @@ const ExperiencePage = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 
