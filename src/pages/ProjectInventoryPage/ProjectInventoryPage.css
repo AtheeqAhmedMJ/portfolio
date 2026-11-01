@@ -211,6 +211,30 @@ html, body {
   hyphens: auto;
 }
 
+/* Slim, shortened scrollbar (inset from the rounded corners) */
+.card {
+  scrollbar-width: thin;                              /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: clamp(24px, 6vh, 56px);               /* shortens the track */
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
 .card h2 {
   margin: 0;
   font-size: var(--fs-h2);
